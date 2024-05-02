@@ -5,12 +5,19 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, BlogPostForm
 from .models import BlogPost
+from django.db.models import Q
 login_url='/login'
 # Create your views here.
 @login_required(login_url=login_url)
 def home(request):
+    
+    is_home=True
     posts=BlogPost.objects.all()
-    return render(request, "index.html",{'posts':posts})
+    if request.method == 'POST':
+        searched=request.POST.get('search')
+        if searched is not None:
+            posts=BlogPost.objects.filter(Q(title__icontains=searched)|Q(content__icontains=searched))
+    return render(request, "index.html",{'posts':posts,'is_home':is_home})
 
 
 def login_user(request):
