@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-8">All Posts</h1>
+    <div class="flex flex-col justify-center w-full items-center">
+      <!-- Example post item -->
+      
+<img src="{{post.image.url}}" width="200" alt="..." >
+      <h2 class="text-xl font-semibold">{{post.title}}</h2>
+      <p class="text-gray-700">{{post.content}}</p>
+      <a href="{% url "edit_post" post.id %}">
+          
+          <button
+          type="button"
+          
+          class=" bg-blue-500 min-w-[200px] text-white py-2 px-4 rounded-md focus:bg-blue-600 focus:outline-none"
+          >
+          Edit
+        </button>
+    </a>
+        
+      
+        </div>
+      </div>
+      <!-- End of example post item -->
+  
+      <!-- Repeat the above block for each post -->
+    </div>
+  </div>
+  
+{% endblock content %}

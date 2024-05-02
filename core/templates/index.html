@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-8">All Posts</h1>
+    <div class="grid grid-rows-1 w-full justify-center md:grid-rows-2 lg:grid-rows-3 gap-8">
+      <!-- Example post item -->
+      {% if posts|length == 0 %}
+      <h1>No Post to Show</h1>
+      {% else %}
+{% for post in posts %}
+<article class="text-center w-[300px] bg-slate-300  shadow-sm rounded-md m-2 p-4">
+    <a href="{% url "post" post.id %}">
+      <h2 class="text-xl font-semibold mb-2">{{post.title}}</h2>
+    </a>
+    <p class="text-gray-700">{{post.content}}</p>
+
+</article>
+{% endfor %}
+        {% endif %}
+
+      
+        </div>
+      </div>
+      <!-- End of example post item -->
+  
+      <!-- Repeat the above block for each post -->
+    </div>
+  </div>
+  
+{% endblock content %}

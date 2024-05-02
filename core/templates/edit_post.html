@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+ {% block title %}Edit Post{% endblock title %} 
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+  <div class="md:flex">
+    <div class="w-full px-6 py-8 md:p-8">
+      <h2 class="text-center font-semibold text-2xl tracking-wide mb-6">
+        Edit Post
+      </h2>
+
+      <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <p>
+          <label for="id_title">Title:</label>
+          <input
+            type="text"
+            value="{{post.title}}"
+            name="title"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            maxlength="70"
+            required
+            id="id_title"
+          />
+        </p>
+
+        <p>
+          <label for="id_content">Content:</label>
+          <textarea
+            name="content"
+            cols="40"
+           
+            rows="10"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            required
+            id="id_content"
+          >{{post.content}}</textarea>
+        </p>
+
+        <p>
+          <label for="id_image">Image:</label>
+          <input
+            type="file"
+            name="image"
+    value="{{post.image}}"
+            accept="image/*"
+            
+            id="id_image"
+          />
+        </p>
+        <p>{{post.image.url}}</p>
+        <img src="{{post.image.url}}" alt="image" >
+        <div class="mt-6">
+          <button
+            type="submit"
+
+            class="w-full bg-blue-500 text-white py-2 px-4 rounded-md focus:bg-blue-600 focus:outline-none"
+          >
+            Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

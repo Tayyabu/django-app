@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/icons8-favicon-50.png"
+      type="image/x-icon"
+    />
+    <script src="{% static "script.js" %}" defer></script>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    {% include "navbar.html" %} {% for message in messages %} 
+    {% if message.tags == "error" %}
+
+    <li  class=" flex justify-between list-none p-3 text-3xl bg-red-500 text-red-950 text-center">
+      {{message}}
+<div  class="cursor-pointer" id="message-destroy">&times;</div>
+</li>
+
+{% elif message.tags == "success" %}
+<li id="message"  id="message-destroy" class=" flex justify-between list-none p-3 text-3xl bg-green-500 text-green-950 text-center">
+  {{message}}
+      <div class="cursor-pointer" id="message-destroy">&times;</div>
+    </li>
+{% elif message.tags == "warning" %}
+<li id="message"  id="message-destroy" class=" flex justify-between list-none p-3 text-3xl bg-yellow-500 text-yellow-950 text-center">
+  {{message}}
+      <div class="cursor-pointer" id="message-destroy">&times;</div>
+    </li>
+
+
+    {% endif %} 
+    
+    
+    {% endfor %}
+
+
+
+     {% block content %}{% endblock content %}
+  </body>
+</html>
