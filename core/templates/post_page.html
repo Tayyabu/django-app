@@ -10,16 +10,27 @@
 <img src="{{post.image.url}}" width="200" alt="..." >
       <h2 class="text-xl font-semibold">{{post.title}}</h2>
       <p class="text-gray-700">{{post.content}}</p>
-      <a href="{% url "edit_post" post.id %}">
-          
+      <div class="flex justify-between">
+        <a href="{% url "edit_post" post.id %}">
+        
+            <button
+            type="button"
+        
+            class=" bg-blue-500 m-2 min-w-[80px] text-white py-2 px-4 rounded-md focus:bg-blue-600 focus:outline-none"
+            >
+            Edit
+          </button>
+        </a>
+        <a href="{% url "delete_post" post.id %}">
           <button
           type="button"
-          
-          class=" bg-blue-500 min-w-[200px] text-white py-2 px-4 rounded-md focus:bg-blue-600 focus:outline-none"
+        
+          class=" bg-red-500 m-2 min-w-[80px] text-white py-2 px-4 rounded-md focus:bg-red-600 focus:outline-none"
           >
-          Edit
-        </button>
-    </a>
+          Delete
+              </button>
+        </a>
+      </div>
         
       
         </div>

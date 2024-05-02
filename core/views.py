@@ -92,3 +92,9 @@ def edit_post(request,pk):
 def post_page(request,pk):
     post =get_object_or_404(BlogPost,id=pk)
     return render(request,'post_page.html',{'post':post})
+def delete_post(request,pk):
+    post =get_object_or_404(BlogPost,id=pk)
+    post.delete()
+    if len(post.image) >0:
+        os.remove(post.image.path)
+    return redirect('home')
