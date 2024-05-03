@@ -50,3 +50,10 @@ class BlogPost(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     image=models.ImageField(upload_to='uploads/posts/',default="media/uploads/posts/4.png")
     # video=models.FieldFile(upload_to='uploads/posts/videos')
+    def __str__(self):
+        return self.title
+    
+
+
+
+
