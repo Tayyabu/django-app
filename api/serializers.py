@@ -4,6 +4,12 @@ from core.models import BlogPost
 class BlogPostSerializer(ModelSerializer):
     class Meta:
         model = BlogPost
-        fields=['id','reactions']
-        depth=1
+        fields='__all__'
         
+        
+        
+# class PostReactionSerializer(ModelSerializer):
+#    class Meta:
+#         model=PostReactions
+#         fiels='__all__'
+#         exclude=['post']

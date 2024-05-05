@@ -3,3 +3,5 @@ s.html
 tailwindcss.py
 .venv
 __pycache__/*
+.vscode/*
+settings.json

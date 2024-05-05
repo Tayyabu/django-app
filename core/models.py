@@ -54,23 +54,8 @@ class BlogPost(models.Model):
         return self.title
     
 
-class PostReactions(models.Model):
-    coffee=models.PositiveBigIntegerField(default=0)
-    rocket=models.PositiveBigIntegerField(default=0)
-    thumbsUp=models.PositiveBigIntegerField(default=0)
-    heart=models.PositiveBigIntegerField(default=0)
-    wow=models.PositiveBigIntegerField(default=0)
-    post=models.ForeignKey(BlogPost,on_delete=models.CASCADE,related_name='reactions')
-    class Meta:
-        verbose_name_plural='Postreactions'
 
 
 
-def react_to_post(created,instance,*args, **kwargs):
-    if created:
-        PostReactions.objects.create(post=instance)
 
-
-
-post_save.connect(react_to_post,sender=BlogPost)
 

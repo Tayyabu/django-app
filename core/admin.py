@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser,BlogPost,PostReactions
-# Register your models here.
+from .models import CustomUser,BlogPost
 admin.site.register(CustomUser)
 admin.site.register(BlogPost)
-admin.site.register(PostReactions)
+
