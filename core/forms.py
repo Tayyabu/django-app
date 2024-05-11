@@ -1,26 +1,12 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser,BlogPost
+from .models import Comment, CustomUser,BlogPost
 
 # forms.py
 
 
 
-# class MyForm(forms.Form):
-#     name = forms.CharField(
-#         label='Name',
-#         max_length=100,
-#         widget=forms.TextInput(attrs={'class': 'w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500'})
-#     )
-#     email = forms.EmailField(
-#         label='Email',
-#         widget=forms.EmailInput(attrs={'class': 'w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500'})
-#     )
-#     message = forms.CharField(
-#         label='Message',
-#         widget=forms.Textarea(attrs={'class': 'w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500'})
-#     )
 
 		
 class SignUpForm(UserCreationForm):
@@ -69,6 +55,13 @@ class BlogPostForm(forms.ModelForm):
 		widgets={
 			'title':forms.TextInput(attrs={'class':'w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500'}),
 			'content':forms.Textarea(attrs={'class':'w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500'}),
+			}
+class CommentForm(forms.ModelForm):
+	class Meta:
+		model=Comment	
+		fields=["content"]
+		widgets={
+			'content':forms.TextInput(attrs={'class':'w-full px-3 py-2 w-[250px] border rounded-md focus:outline-none focus:border-blue-500'}),
 			}
 
 		
