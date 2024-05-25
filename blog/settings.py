@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-%2b2ko2^7u&qw1(^2%e1z7=ag58u)juwi^mtr#os!)nd1oxwn4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,9 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'django_extensions',
-    'rest_framework',
-    'corsheaders',
-    'rest_framework_simplejwt'
+ 
+
 ]
 
 MIDDLEWARE = [
@@ -59,26 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'blog.urls'
 
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:8000'
-]
-CORS_ALLOW_METHODS = (
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-)
-CORS_ALLOW_HEADERS = (
-    "accept",
-    "authorization",
-    "content-type",
-    "user-agent",
-    "X-Csrftoken",
-    "x-requested-with",
-)
-CORS_ALLOW_CREDENTIALS=True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -158,10 +138,12 @@ AUTH_USER_MODEL = 'core.CustomUser'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-}
+
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST="smtop.gmail.com"
+EMAIL_USE_TLS=True
+EMAIL_HOST_PASSWORD=""
+EMAIL_HOST_USER=""
+EMAIL_PORT=587

@@ -1,12 +1,13 @@
 import os
+from django import urls
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, BlogPostForm, CommentForm
+from .forms import  SignUpForm, BlogPostForm, CommentForm
 from .models import BlogPost, Comment
 from django.db.models import Q
-
+from .utils import send_email_to_client
 login_url = "/login"
 
 
@@ -16,6 +17,7 @@ def home(request):
 
     is_home = True
     posts = BlogPost.objects.all()
+    # send_email_to_client()
     if request.method == "POST":
         searched = request.POST.get("search")
         if searched is not None:
@@ -104,17 +106,20 @@ def edit_post(request, pk):
 @login_required(login_url=login_url)
 def post_page(request, pk):
     post = get_object_or_404(BlogPost, id=pk)
-    comments = Comment.objects.filter(post__id=post.id).order_by('-created_at').values()
+    comments = Comment.objects.filter(post__id=post.id).order_by('-created_at')
 
-    
+  
     if request.method == "POST":
         form = CommentForm(request.POST)
+        
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.author = request.user
             new_comment.post = post
             new_comment.save()
             new_comment.content = ""
+       
+            return redirect(f'/post/{post.id}')
     form = CommentForm()
 
     return render(

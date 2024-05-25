@@ -52,6 +52,12 @@ class BlogPost(models.Model):
     # video=models.FieldFile(upload_to='uploads/posts/videos')
     def __str__(self):
         return self.title
+
+    def get_sub_content(self):
+        if len(self.content)>25:
+            return f'{self.content[0:10]}...'
+        else:
+            return self.content
     
 class Comment(models.Model):
    post=models.ForeignKey(BlogPost,related_name="commets",on_delete=models.CASCADE,default=None)

@@ -64,6 +64,8 @@ class CommentForm(forms.ModelForm):
 			'content':forms.TextInput(attrs={'class':'w-full px-3 py-2 w-[250px] border rounded-md focus:outline-none focus:border-blue-500'}),
 			}
 
+
+
 		
 
 

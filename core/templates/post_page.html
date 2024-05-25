@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
-{% block title %}Home{% endblock title %}
+{% block title %}Post {{post.id}}{% endblock title %}
 
 {% block content %}
 <div class="container mx-auto py-8">
-    <h1 class="text-3xl font-bold mb-8">All Posts</h1>
     <div class="flex flex-col justify-center w-full items-center">
       <!-- Example post item -->
       
@@ -39,9 +38,10 @@
           {% if comments %}
 {% for comment in  comments %}
 
-<article class ="border-blue-500 my-1 rounded-sm p-2 w-[300px] ">
+<article class ="shadow-lg my-1 rounded-sm p-2 w-full ">
 <h1 class="font-bold  ">{{comment.author.username}}</h1>
 <p class="text-sm">{{comment.content}}</p>
+<p class="text-center"><button class=" bg-white-500 m-2  min-w-[80px] text-black shadow-md  py-2 px-4 font-bold rounded-md focus:bg-white-600 focus:outline-none" >Reply</button> </p>
   </article>
 {% endfor %}
           

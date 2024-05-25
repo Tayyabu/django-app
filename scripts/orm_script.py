@@ -1,6 +1,4 @@
-from core.models import BlogPost,PostReactions,CustomUser
+from core.models import Comment
 def run():
-   post = BlogPost.objects.first()
-   print(post.reactions.all())
-
-    
+  for comment in Comment.objects.all():
+    print(comment.author.email)
