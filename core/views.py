@@ -133,3 +133,16 @@ def delete_post(request, pk):
     if len(post.image) > 0:
         os.remove(post.image.path)
     return redirect("home")
+
+
+def remove_comment(request,pk):
+
+    comment=get_object_or_404(Comment, id=pk)
+    if comment.author.username ==request.user.username:
+        print(comment.post.id)
+        comment.delete()
+        return redirect(f'/post/{comment.post.id}')
+    else:
+        messages.error(request,"You cannot delete this comment")
+        return redirect(f'/post/{comment.post.id}')
+

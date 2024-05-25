@@ -60,7 +60,7 @@ class BlogPost(models.Model):
             return self.content
     
 class Comment(models.Model):
-   post=models.ForeignKey(BlogPost,related_name="commets",on_delete=models.CASCADE,default=None)
+   post=models.ForeignKey(BlogPost,related_name="comments",on_delete=models.CASCADE,default=None)
    author = models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=None)
    content=models.TextField()
    created_at=models.DateTimeField(auto_now_add=True)

@@ -41,8 +41,12 @@
 <article class ="shadow-lg my-1 rounded-sm p-2 w-full ">
 <h1 class="font-bold  ">{{comment.author.username}}</h1>
 <p class="text-sm">{{comment.content}}</p>
-<p class="text-center"><button class=" bg-white-500 m-2  min-w-[80px] text-black shadow-md  py-2 px-4 font-bold rounded-md focus:bg-white-600 focus:outline-none" >Reply</button> </p>
-  </article>
+{% if user.username == comment.author.username %}
+
+<p class="text-end"><a href="{% url "remove_comment" comment.id %}"><button class=" bg-red-500 m-2  min-w-[80px] text-white shadow-md  py-2 px-4 font-bold rounded-md focus:bg-red-600 focus:outline-none" >Delete</button></a> </p>
+{% endif %}
+  
+</article>
 {% endfor %}
           
           {% endif %}
